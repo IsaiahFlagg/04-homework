@@ -1,0 +1,1 @@
+const testMessage = 'The JavaScript file is connected and running.'
