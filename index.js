@@ -25,42 +25,23 @@ $(document).ready(function () {
 
         console.log(typeof topicValue);
         console.log(topics);
-        topics.push(topicValue)
+        topics.push(topicValue);
 
-        addNewBtn(topicValue)
+        addNewBtn(topicValue);
 
-    })
-
-    function addNewBtn(param) {
-        for (let i = 0; i < topics.length; i++) {
-            const element = topics[i];
-            let lastElement = topics[topics.length - 1];
-
-            if (i === topics.length - 1) {
-                // let buttonDiv = $(".buttonsContainer")
-                // let topicBtns = $('<button>')
-                let newBtn = $('<button>')
-                newBtn.text(lastElement)
-                newBtn.addClass("btn btn-primary")
-                newBtn.attr("data-topic", lastElement)
-                newBtn.attr("id", 'topicBtn')
-                $(buttonDiv).append(newBtn)
-            }
-
-        }
-    }
+    });
 
 
 
-    $(".btn").on("click", function () {
+    $(document).on("click","#topicBtn", function () {
         // Grabbing and storing the data-topic property value from the button
         let topic = $(this).attr("data-topic");
-
         // alert('on click works')
         // Constructing a queryURL using the topic name
         let queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-            topic + "&api_key=dc6zaTOxFJmzC&limit=10";
-
+        topic + "&api_key=dc6zaTOxFJmzC&limit=10";
+        
+        console.log(queryURL);
         // Performing an AJAX request with the queryURL
         $.ajax({
             url: queryURL,
@@ -124,7 +105,24 @@ $(document).ready(function () {
     });
 
 
+    function addNewBtn(param) {
+        for (let i = 0; i < topics.length; i++) {
+            const element = topics[i];
+            let lastElement = topics[topics.length - 1];
 
+            if (i === topics.length - 1) {
+                // let buttonDiv = $(".buttonsContainer")
+                // let topicBtns = $('<button>')
+                let newBtn = $('<button>')
+                newBtn.text(lastElement)
+                newBtn.addClass("btn btn-primary")
+                newBtn.attr("data-topic", lastElement)
+                newBtn.attr("id", 'topicBtn')
+                $(buttonDiv).append(newBtn)
+            }
+
+        }
+    }
 
 
 
